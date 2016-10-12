@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>currentPosition</key>
+	<dict>
+		<key>chooseCity</key>
+		<string></string>
+		<key>currentAddress</key>
+		<string></string>
+		<key>lat</key>
+		<string></string>
+		<key>lng</key>
+		<string></string>
+	</dict>
+	<key>login</key>
+	<string>Doubi</string>
+	<key>patients</key>
+	<array/>
+</dict>
+</plist>
