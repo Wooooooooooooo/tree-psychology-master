@@ -17,6 +17,7 @@
 @property(strong,nonatomic)NSString *tel;
 @property(strong,nonatomic)NSString *userID;
 @property(strong,nonatomic)NSString *commentID;
+@property(strong,nonatomic)NSString *photoUrl;
 +(instancetype) getInstance;
 
 @end

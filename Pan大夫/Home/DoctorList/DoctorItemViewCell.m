@@ -96,7 +96,7 @@
         self.rankLabel.textColor = [UIColor grayColor];
         self.rankLabel.text = @"资质:";
         
-        self.secRankLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.rankLabel.frame), CGRectGetMinY(self.rankLabel.frame), ksecRankWidth*KDeviceWidth, kRankLabelHeight*KDeviceHeight)];
+        self.secRankLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.rankLabel.frame), CGRectGetMinY(self.rankLabel.frame), ksecRankWidth*KDeviceWidth+100, kRankLabelHeight*KDeviceHeight)];
         self.secRankLabel.textColor = [UIColor colorWithRed:3/255.0 green:133/255.0 blue:125/255.0 alpha:1.0];
         
 //        self.conTimesLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.secRankLabel.frame), CGRectGetMinY(self.rankLabel.frame), kConTimes*KDeviceWidth, kRankLabelHeight*KDeviceHeight)];
@@ -175,10 +175,12 @@
         self.departmentLabel.font = [UIFont systemFontOfSize:16];
         self.docTitleLabel.font = [UIFont systemFontOfSize:16];
         self.specialLabel.font = [UIFont systemFontOfSize:14];
-        self.specialView.font = [UIFont systemFontOfSize:18];
+        //self.specialView.font = [UIFont systemFontOfSize:18];  10.25
+        self.specialView.font = [UIFont systemFontOfSize:14];
         self.rankLabel.font = [UIFont systemFontOfSize:13];
-        self.secRankLabel.font = [UIFont systemFontOfSize:15];
-//        self.conTimesLabel.font = [UIFont systemFontOfSize:13];
+        //self.secRankLabel.font = [UIFont systemFontOfSize:15]; 10.25
+        self.secRankLabel.font = [UIFont systemFontOfSize:13];
+        //        self.conTimesLabel.font = [UIFont systemFontOfSize:13];
 //        self.secConTimesLabel.font = [UIFont systemFontOfSize:15];
 //        self.priceLabel.font = [UIFont systemFontOfSize:13];
 //        self.secPriceLabel.font = [UIFont systemFontOfSize:15];
@@ -193,7 +195,8 @@
         self.departmentLabel.font = [UIFont systemFontOfSize:13];
         self.docTitleLabel.font = [UIFont systemFontOfSize:13];
         self.specialLabel.font = [UIFont systemFontOfSize:13];
-        self.specialView.font = [UIFont systemFontOfSize:15];
+       // self.specialView.font = [UIFont systemFontOfSize:15]; 10 25
+        self.specialView.font = [UIFont systemFontOfSize:12];
         self.rankLabel.font = [UIFont systemFontOfSize:12];
         self.secRankLabel.font = [UIFont systemFontOfSize:14];
 //        self.conTimesLabel.font = [UIFont systemFontOfSize:12];
@@ -210,7 +213,7 @@
         self.departmentLabel.font = [UIFont systemFontOfSize:12];
         self.docTitleLabel.font = [UIFont systemFontOfSize:12];
         self.specialLabel.font = [UIFont systemFontOfSize:11];
-        self.specialView.font = [UIFont systemFontOfSize:13];
+        self.specialView.font = [UIFont systemFontOfSize:10];
         self.rankLabel.font = [UIFont systemFontOfSize:10];
         self.secRankLabel.font = [UIFont systemFontOfSize:12];
 //        self.conTimesLabel.font = [UIFont systemFontOfSize:10];

@@ -59,10 +59,6 @@
     didFinsh = NO;
     self.view.backgroundColor = [UIColor lightGrayColor];
     doctorsArray = [[NSMutableArray alloc]init];
-    chooseCity = [self getChooseCityFromFile];
-    if (!chooseCity) {
-       chooseCity = @"沈阳";
-    }
     [self getDoctorsFromNetWork];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getCurrentCity) name:@"getCurrentCity" object:nil];
 }
@@ -72,23 +68,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (NSString *)getChooseCityFromFile{
-    NSMutableDictionary *plistDictionary = [[NSMutableDictionary alloc]initWithContentsOfFile:[self getFilePath]];
-    NSMutableDictionary *currentPosition = [plistDictionary objectForKey:@"currentPosition"];
-    NSString  *city = [currentPosition objectForKey:@"defaultCity"];
-    NSLog(@"city is %@",[currentPosition objectForKey:@"defaultCity"]);
-    return city;
-}
 
-- (void)getCurrentCity{
-    if (didFinsh) {
-        didFinsh = NO;
-        NSMutableDictionary *plistDictionary = [[NSMutableDictionary alloc]initWithContentsOfFile:[self getFilePath]];
-        NSMutableDictionary *currentPosition = [plistDictionary objectForKey:@"currentPosition"];
-        chooseCity = [currentPosition objectForKey:@"defaultCity"];
-        [self getDoctorsFromNetWork];
-    }
-}
 
 //初始化函数，参数为homeviewController的对象
 - (id)initWithDelegate:(HomeViewController *)homeDelegate Special:(NSString *)special{
@@ -182,7 +162,9 @@
     [self doctorInfoWillLoad];
     
     chooseCity = [chooseCity stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSString *path = [NSString stringWithFormat:@"/mental/doctordb.php?id=all&nextPage=%d&city=%@",page,chooseCity];
+    NSString *city = @"沈阳";
+    NSString *utf8City = [city stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *path = [NSString stringWithFormat:@"/mental/doctordb.php?id=all&nextPage=%d&city=%@",page,utf8City];
     netOp = [appDelegate.netEngine operationWithPath:path];
     
     __block NSMutableArray *localDoctorsArray = doctorsArray;
@@ -220,7 +202,9 @@
                 NSString *more = [doctor objectForKey:@"more"];
                 NSString *careerYears = [doctor objectForKey:@"careerYears"];
                 NSString *location = [doctor objectForKey:@"location"];
-                NSString *imageUrl = @"http://c.hiphotos.baidu.com/image/pic/item/aa18972bd40735fa8c6d0ec89d510fb30f240825.jpg";
+               // NSString *imageUrl = @"http://c.hiphotos.baidu.com/image/pic/item/aa18972bd40735fa8c6d0ec89d510fb30f240825.jpg";
+                
+                NSString *imageUrl = [doctor objectForKey:@"headpic"];
                 NSString *certificate = [doctor objectForKey:@"certificate"];
                 NSString *GPS = [doctor objectForKey:@"GPS"];
                 NSString *department = [doctor objectForKey:@"department"];

@@ -222,6 +222,7 @@
 //设置tableViewCell里的内容
 - (void)setCellContent:(DoctorItemViewCell *)cell Rows:(NSInteger)row{
     Doctor *doctor = (Doctor *)[doctorsArray objectAtIndex:row];
+    
     [cell.imageView sd_setImageWithURL:[NSURL URLWithString:doctor.imageURL] placeholderImage:[UIImage imageNamed:@"ImageLoadError"]];
     cell.doctor = doctor;
     if (doctor.docName == nil) {
@@ -355,7 +356,7 @@
                 NSString *moreSpecial = [doctor objectForKey:@"moreSpecial"];
                 NSString *careerYears = [doctor objectForKey:@"careerYears"];
                 NSString *location = [doctor objectForKey:@"location"];
-                NSString *imageUrl = @"http://c.hiphotos.baidu.com/image/pic/item/aa18972bd40735fa8c6d0ec89d510fb30f240825.jpg";
+                NSString *imageUrl = [doctor objectForKey:@"headpic"];
                 NSString *certificate = [doctor objectForKey:@"certificate"];
                 NSString *GPS = [doctor objectForKey:@"GPS"];
                 NSString *department = [doctor objectForKey:@"department"];

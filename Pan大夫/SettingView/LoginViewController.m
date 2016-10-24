@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "HomeViewController.h"
 #import <SMS_SDK/SMS_SDK.h>
 #import "JKCountDownButton.h"
 #import "RegistInformation/RegistInformationViewController.h"
@@ -69,7 +70,7 @@ int navH;
         [headerView addSubview:titleLabel];
         
         UIButton *cancelButton = [[UIButton alloc]initWithFrame:CGRectMake(10, 30, 40, 30)];
-        [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
+        //[cancelButton setTitle:@"取消" forState:UIControlStateNormal];
         [cancelButton setTitleColor:[UIColor colorWithRed:0/255.0 green:175/255.0 blue:170/255.0 alpha:1.0] forState:UIControlStateNormal];
         [cancelButton.titleLabel setFont:[UIFont systemFontOfSize:18]];
         [cancelButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
@@ -97,11 +98,11 @@ int navH;
     [scroll addSubview:userImageView];
     
     //登录显示
-    UILabel *userLabel= [[UILabel alloc]initWithFrame:CGRectMake((userImageW - labelW)/2, navH + userImageH - 1.8*labelH, labelW, labelH)];
-    userLabel.text = @"未登录";
-    userLabel.textColor = [UIColor whiteColor];
-    userLabel.font = [UIFont systemFontOfSize:loginFont];
-    [scroll addSubview:userLabel];
+    //UILabel *userLabel= [[UILabel alloc]initWithFrame:CGRectMake((userImageW - labelW)/2, navH + userImageH - 1.8*labelH, labelW, labelH)];
+    //userLabel.text = @"未登录";
+    //userLabel.textColor = [UIColor whiteColor];
+    //userLabel.font = [UIFont systemFontOfSize:loginFont];
+    //[scroll addSubview:userLabel];
     
     //创建欢迎登录标签
     welLabel = [[UILabel alloc]initWithFrame:CGRectMake((userImageW - localLabelW)/2, navH + upLabel + userImageH, localLabelW, localLabelH)];
@@ -346,6 +347,8 @@ int navH;
         //            [self cancelLoginView];
         //        }
         //        settingsView = [SettingsViewController new];
+        HomeViewController *homeViewController = [[HomeViewController alloc] init];
+        [self presentViewController:homeViewController animated:YES completion:nil];
     }
 }
 

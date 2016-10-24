@@ -5,7 +5,7 @@
 //  Created by tiny on 15/3/6.
 //  Copyright (c) 2015年 Neil. All rights reserved.
 //
-
+#import "Singleton.h"
 #import "DoctorDetailViewController.h"
 #import "Doctor.h"
 #import "DoctorInfoScrollView.h"
@@ -57,7 +57,7 @@
 @property (strong, nonatomic) UILabel *secAgeLabel;
 @property (strong, nonatomic) UILabel *markLabel;
 @property (strong, nonatomic) UILabel *secMarkLabel;
-
+@property (strong, nonatomic) NSString *photoUrl;
 @property (strong, nonatomic) UIButton *timeTableButton;
 @property (strong, nonatomic) UIButton *docInfoButton;
 @property (strong, nonatomic) UIButton *previousButton;
@@ -74,7 +74,7 @@
 @end
 
 @implementation DoctorDetailViewController
-@synthesize localDoctor;
+@synthesize localDoctor,photoUrl;
 @synthesize basicInfoView;
 @synthesize docPic;
 @synthesize docNameLabel,secAgeLabel,ageLabel,sexLabel,markLabel,secMarkLabel;
@@ -87,6 +87,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.photoUrl = localDoctor.imageURL;
     self.view.backgroundColor = [UIColor colorWithRed:239.0/255.0 green:239.0/255.0 blue:244.0/255.0 alpha:1.0];
     self.view.frame = CGRectMake(0, 0, KDeviceWidth, KDeviceHeight);
     
@@ -141,13 +142,15 @@
         [rightView setBackgroundColor:[UIColor colorWithRed:150.0/255.0 green:150.0/255 blue:150.0/255.0 alpha:1.0]];
         
         docPic = [[UIImageView alloc]initWithFrame:CGRectMake(kPicLeftInterval*KDeviceWidth, kPicTopInterval*KDeviceHeight, kPicWidth*KDeviceWidth, kPicWidth*KDeviceWidth)];
-        docPic.image = [UIImage imageNamed:@"appCover"];
-        
+        docPic.layer.masksToBounds =YES;
+        docPic.layer.cornerRadius = 50;
+        UIImage *img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:localDoctor.imageURL]]];
+        docPic.image = img;
         docNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(docPic.frame)+kPicLeftInterval*KDeviceWidth, KDeviceHeight*kNameTopInterval, kNameLabelWidth*KDeviceWidth, kNameLabelHeight*KDeviceHeight)];
         
         sexLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(docNameLabel.frame), CGRectGetMinY(docNameLabel.frame), kSexLabelwidth*KDeviceWidth, kNameLabelHeight*KDeviceHeight)];
         
-        ageLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(sexLabel.frame)+kPicLeftInterval*KDeviceWidth, CGRectGetMinY(sexLabel.frame), kAgeLabelWidth*KDeviceWidth, kNameLabelHeight*KDeviceHeight)];
+        ageLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(sexLabel.frame)+kPicLeftInterval*KDeviceWidth, CGRectGetMinY(sexLabel.frame), kAgeLabelWidth*KDeviceWidth+10, kNameLabelHeight*KDeviceHeight)];
         
         secAgeLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(ageLabel.frame), CGRectGetMinY(ageLabel.frame),kSecAgeLabelWidth*KDeviceWidth , kNameLabelHeight*KDeviceHeight)];
         secAgeLabel.text = @"岁";
@@ -225,6 +228,9 @@
     else{
         docStarRate.scorePercent = [localDoctor.docMark floatValue]/5.0;
     }
+
+
+    
 }
 
 - (void)setFont{
@@ -235,7 +241,7 @@
         secAgeLabel.font = [UIFont systemFontOfSize:14];
         markLabel.font = [UIFont systemFontOfSize:11];
         secMarkLabel.font = [UIFont systemFontOfSize:11];
-        introductionTextView.font = [UIFont systemFontOfSize:12];
+        introductionTextView.font = [UIFont systemFontOfSize:10];
         
         timeTableButton.titleLabel.font = [UIFont systemFontOfSize:15];
         docInfoButton.titleLabel.font = [UIFont systemFontOfSize:15];
@@ -247,7 +253,7 @@
         secAgeLabel.font = [UIFont systemFontOfSize:12];
         markLabel.font = [UIFont systemFontOfSize:10];
         secMarkLabel.font = [UIFont systemFontOfSize:10];
-        introductionTextView.font = [UIFont systemFontOfSize:11];
+        introductionTextView.font = [UIFont systemFontOfSize:10];
         
         timeTableButton.titleLabel.font = [UIFont systemFontOfSize:13];
         docInfoButton.titleLabel.font = [UIFont systemFontOfSize:13];
@@ -259,7 +265,7 @@
         secAgeLabel.font = [UIFont systemFontOfSize:16];
         markLabel.font = [UIFont systemFontOfSize:13];
         secMarkLabel.font = [UIFont systemFontOfSize:13];
-        introductionTextView.font = [UIFont systemFontOfSize:15];
+        introductionTextView.font = [UIFont systemFontOfSize:13];
         
         timeTableButton.titleLabel.font = [UIFont systemFontOfSize:17];
         docInfoButton.titleLabel.font = [UIFont systemFontOfSize:17];
@@ -271,7 +277,7 @@
         secAgeLabel.font = [UIFont systemFontOfSize:18];
         markLabel.font = [UIFont systemFontOfSize:14];
         secMarkLabel.font = [UIFont systemFontOfSize:14];
-        introductionTextView.font = [UIFont systemFontOfSize:17];
+        introductionTextView.font = [UIFont systemFontOfSize:14];
         
         timeTableButton.titleLabel.font = [UIFont systemFontOfSize:19];
         docInfoButton.titleLabel.font = [UIFont systemFontOfSize:19];

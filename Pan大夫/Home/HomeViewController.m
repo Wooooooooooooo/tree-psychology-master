@@ -35,8 +35,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    NSMutableDictionary *plistDictionary = [[NSMutableDictionary alloc]initWithContentsOfFile:[self getFilePath]];
+    NSLog(@"asd");
+    //NSMutableDictionary *plistDictionary = [[NSMutableDictionary alloc]initWithContentsOfFile:[self getFilePath]];
+    /*
     NSMutableDictionary *currentPosition = [plistDictionary objectForKey:@"currentPosition"];
     [currentPosition setObject:@"沈阳" forKey:@"defaultCity"];
     [plistDictionary writeToFile:[self getFilePath] atomically:YES];
@@ -46,7 +47,8 @@
     else{
         self.defaultCity = [currentPosition objectForKey:@"defaultCity"];
     }
-    [self createLeftButton];
+    */
+   // [self createLeftButton];
     
     
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -92,12 +94,23 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     // 第一次启动检测与登录要求
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    NSArray *paths =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+    NSString *documentsDirectory =[paths objectAtIndex:0];
+    NSString *documentPlistPath = [documentsDirectory stringByAppendingPathComponent:@"login.plist"];//plist文件位置
+    NSMutableDictionary *plistDictionary = [[NSMutableDictionary alloc]initWithContentsOfFile:documentPlistPath];
+    ;
+    if ([plistDictionary objectForKey:@"login"] == nil) {
+        LoginViewController *loginVC = [[LoginViewController alloc] initWithNav:YES SettingsViewController:nil];
+        [self presentViewController:loginVC animated:YES completion:nil];
+    }
+    /*
     if (![userDefaults boolForKey:@"PDFirstTimeLaunch"]) {
         // present 出登录界面
         LoginViewController *loginVC = [[LoginViewController alloc] initWithNav:YES SettingsViewController:nil];
         [self presentViewController:loginVC animated:YES completion:nil];
     }
+     */
 }
 
 - (void)segmentAction:(UISegmentedControl *)theSegment{
@@ -185,6 +198,7 @@
 }
 
 //创建首页左侧顶部定位城市按钮
+/*
 - (void)createLeftButton{
     leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 30)];
     [leftButton setTitle:self.defaultCity forState:UIControlStateNormal];
@@ -202,7 +216,7 @@
     }
     [self.navigationController presentViewController:chooseCityView animated:YES completion:^(void){}];
 }
-
+*/
 - (NSString *)getFilePath{
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
     NSString *documentsDirectory =[paths objectAtIndex:0];

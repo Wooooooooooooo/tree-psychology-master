@@ -10,6 +10,7 @@
 #import <SMS_SDK/SMS_SDK.h>
 #import "JKCountDownButton.h"
 #import "ModifyInformationViewController.h"
+#import "HomeViewController.h"
 #import "Singleton.h"
 
 int navH;
@@ -108,7 +109,8 @@ int navH;
     UIImageView* userImageView = [[UIImageView alloc] initWithImage:userImage];
     userImageView.frame = CGRectMake(userImageW/2-userImageNewW/2, 0, userImageH, userImageH);
     NSLog(@"%d",navH);
-
+    userImageView.layer.masksToBounds =YES;
+    userImageView.layer.cornerRadius = 50;
     [scroll addSubview:userImageView];
     
     
@@ -355,7 +357,9 @@ int navH;
     // }
     UIImageView* userImageView = [[UIImageView alloc] initWithImage:userImage];
     userImageView.frame = CGRectMake(userImageW/2-userImageNewW/2, 0, userImageH, userImageH);
-    NSLog(@"%d",navH);
+    userImageView.layer.masksToBounds =YES;
+    userImageView.layer.cornerRadius = 50;
+    
     
     [scroll addSubview:userImageView];
     
@@ -397,7 +401,9 @@ int navH;
     // }
     UIImageView* userImageView = [[UIImageView alloc] initWithImage:userImage];
     userImageView.frame = CGRectMake(userImageW/2-userImageNewW/2, 0, userImageH, userImageH);
-    NSLog(@"%d",navH);
+    userImageView.layer.masksToBounds =YES;
+    userImageView.layer.cornerRadius = 50;
+ 
     
     [scroll addSubview:userImageView];
     
@@ -537,8 +543,9 @@ int navH;
         
         [plistDictionary writeToFile:documentPlistPath atomically:YES];
         
-        [self.navigationController popViewControllerAnimated:true];
-        
+        //[self.navigationController popViewControllerAnimated:true];
+        HomeViewController *homeViewController = [[HomeViewController alloc] init];
+        [self presentViewController:homeViewController animated:YES completion:nil];
     }];
     
     [alertController addAction:cancelAction];
